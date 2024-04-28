@@ -1,0 +1,82 @@
+
+body {
+    background:white;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  .container{
+    padding:10px;
+    
+  }
+  header {
+   
+    color:rgb(1,46,54);
+    text-align: center;
+    
+  }
+  
+  #skill{
+    color:aliceblue;
+    font-size: 10px;
+    line-height: 1.4;
+    margin-bottom: 4rem;
+  }
+  .title{
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+  
+  .skills-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(259px,1fr));
+    grid-gap:40px;
+    margin-top:10px;
+    background-color: rgb(1,46,54);
+  }
+  .skills-list div{
+    background-color: transparent;
+    padding:5px;
+    font-size: 12px;
+    font-weight: 5px;
+    border-right:10px;
+    border-radius:20px;
+    transition:background 0.5s, transform 0.5s;
+    box-shadow:1px 1px 20px #012290f7,
+            1px 1px 20px #38024af7;
+  
+  }
+  .skills-list div h2{
+    font-size:20px;
+    font-weight:500;
+    margin-bottom:15px;
+    color:green;
+    
+  }
+  .skills-list div h2:hover{
+    color:white;
+  }
+  .skills-list div a{
+    text-decoration: none;
+    color:white;
+    font-size: 8px;
+    margin-top:20px;
+    display:inline-block;
+  
+  }
+  .read{
+    display:inline-block;
+    padding:12px 28px;
+    background:rgb(182, 210, 255);
+    border-radius: 40px;
+    font-size:8px;
+    letter-spacing:1px;
+    text-decoration: none;
+    font-weight: 600;  
+  }
+  
+  
+  
