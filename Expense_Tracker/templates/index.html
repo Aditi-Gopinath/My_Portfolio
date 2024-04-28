@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<div class="container" style="width: 700px;">
+    <div class="row" style="width: 700px;">
+        
+<div id="mymodal" style="width: 700px;">
+            <div class="modal-content"> 
+                <form action="{{ url_for('insert') }}" method="POST">
+                    <div class="form-group">
+                        <label><b>Description:</b></label>
+                        <input type="hidden" name="id" value="id">
+                        <input type="text" class="form-control" name="description" placeholder="Enter description" required="1"/>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Amount:</b></label>
+                        <input type="number" class="form-control" name="amount" placeholder="Enter amount" required="1"/>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Date:</b></label>
+                        <input type="date" class="form-control" name="date" required="1"/>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Category:</b></label>
+                        <select class="form-control" name="category">
+                            <option value="Food">Food</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Business">Business</option>
+                            <option value="Education">Education</option>
+                            <option value="Clothes">Clothes</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Pay Mode:</b></label>
+                        <select class="form-control" name="pay_mode">
+                            <option value="Cash">Cash</option>
+                            <option value="Debitcard">Debitcard</option>
+                            <option value="Creditcard">Creditcard</option>
+                            <option value="epayment">epayment</option>
+                            <option value="online banking">online banking</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button  type="submit">Add Expenses</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+ 
+<table class="table table-hover">
+    <tr>
+        <th><b>Description</b></th>
+        <th><b>Amount</b></th>
+        <th><b>Date</b></th>
+        <th><b>Category</b></th>
+        <th><b>Pay Mode</b></th>
+        <th><b>Edit</b></th>
+        <th><b>Delete</b></th>
+    </tr>
+    {% for row in expenses %}
+    <tr>
+        <td>{{ row.description }}</td>
+        <td>{{ row.amount }}</td>
+        <td>{{ row.date }}</td>
+        <td>{{ row.category }}</td>
+        <td>{{ row.pay_mode }}</td>
+        <td><a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{ row.id }}">Edit</a></td>
+        <td><a href="/delete/{{row.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
+    </tr>
+    {% endfor %}
+
+
+{% for row in expenses %}
+<div id="modaledit{{ row.id }}" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Expenses</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('update') }}" method="POST">
+                    <div class="form-group">
+                        <label><b>Description:</b></label>
+                        <input type="hidden" name="id" value="{{row.id}}">
+                        <input type="text" class="form-control" name="description" value="{{ row.description }}">
+                    </div>
+                    <div class="form-group">
+                        <label><b>Amount:</b></label>
+                        <input type="number" class="form-control" name="amount" value="{{ row.amount }}">
+                    </div>
+                    <div class="form-group">
+                        <label><b>Date:</b></label>
+                        <input type="date" class="form-control" name="date" value="{{ row.date }}">
+                    </div>
+                    <div class="form-group">
+                        <label><b>Category:</b></label>
+                        <select class="form-control" name="category">
+                            <option value="Food">Food</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Business">Business</option>
+                            <option value="Education">Education</option>
+                            <option value="Clothes">Clothes</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Pay Mode:</b></label>
+                        <select class="form-control" name="pay_mode">
+                            <option value="Cash">Cash</option>
+                            <option value="Debitcard">Debitcard</option>
+                            <option value="Creditcard">Creditcard</option>
+                            <option value="epayment">epayment</option>
+                            <option value="online banking">online banking</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+                </table>
+            </div>
+
+</div>
+
+{% endblock %}
